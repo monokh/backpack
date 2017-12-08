@@ -41,6 +41,7 @@
     "check-bpk-dependencies": "node scripts/npm/check-bpk-dependencies.js",
     "fix-bpk-dependencies": "node scripts/npm/check-bpk-dependencies.js --fix",
     "test": "npm run lint && npm run check-bpk-dependencies && npm run jest && npm run test:native && npm run flow",
+    "generate-prop-tables": "node scripts/npm/generate-prop-tables-in-readme-files-automatically-so-that-we-dont-mess-it-up-all-the-time.js",
     "test:native": "(cd ./native && npm test)",
     "ios": "(cd ./native && npm run ios)",
     "android": "(cd ./native && npm run android)",
