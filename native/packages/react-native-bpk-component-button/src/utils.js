@@ -42,6 +42,7 @@ export const getStyleForElement = (elementType, {
   title,
   icon,
   iconOnly,
+  link,
   large,
   disabled,
 }) => {
@@ -71,6 +72,12 @@ export const getStyleForElement = (elementType, {
   } else if (title && icon) {
     // If it has a title and icon, get the style for that.
     styleForElement.push(styles.modifiers[large ? 'textAndIconLarge' : 'textAndIcon'][elementType]);
+  }
+  if (link) { // maybe android and button secondary only?
+    styleForElement.push({
+      paddingVertical: 0,
+      paddingHorizontal: 0,
+    });
   }
 
   return styleForElement;
