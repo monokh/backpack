@@ -33,11 +33,14 @@ class AnimateAndFade extends Component {
   constructor(props) {
     super(props);
 
+    const initiallyShown = this.props.show;
+
     this.state = {
-      isExpanded: !this.props.animateOnEnter,
-      visible: !this.props.animateOnEnter,
+      isExpanded: initiallyShown,
+      visible: initiallyShown,
+      showingNow: false,
       hideAnimationInProgress: false,
-      inDom: true,
+      inDom: initiallyShown,
     };
 
     this.onFadeComplete = this.onFadeComplete.bind(this);
@@ -45,17 +48,24 @@ class AnimateAndFade extends Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  componentDidMount() {
-    if (this.props.animateOnEnter) {
-      this.toggle();
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.show === this.props.show) {
       return;
     }
     this.toggle();
+  }
+
+  componentDidUpdate() {
+    if (this.state.showingNow) {
+      // React doesn't like us calling setState from componentDidUpdate as it can lead to an infinite re-renders.
+      // I think it is ok here, however, as this will only happen conditionally (ie once)
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        showingNow: false,
+        isExpanded: true,
+        visible: true,
+      });
+    }
   }
 
   onAnimateHeightComplete() {
@@ -83,8 +93,7 @@ class AnimateAndFade extends Component {
     } else if (!this.state.visible && !this.state.isExpanded) {
       this.setState({
         inDom: true,
-        isExpanded: true,
-        visible: true,
+        showingNow: true,
       });
     }
   }
