@@ -2,7 +2,10 @@
 
 ## UNRELEASED
 
-_Nothing yet..._
+**Fixed:**
+
+- bpk-component-banner-alert:
+  - Fixed issue where banner was shown if `show` was initially set `false`.
 
 ## 2017-12-21 - Fix web button warnings
 
@@ -874,8 +877,8 @@ _Nothing yet..._
 **Breaking:**
 - bpk-mixins: 15.7.1 => 16.0.0
   - Text mixins (`bpk-text-base`, `bpk-text-lg` etc.) now set letter-spacing and font-weight explicitly. This means you
-  cannot set `font-weight` anymore before including the mixin. Instead, use the new `bpk-text-bold` mixin to bolden
-  text:
+    cannot set `font-weight` anymore before including the mixin. Instead, use the new `bpk-text-bold` mixin to bolden
+    text:
 
     ```scss
     .selector {
@@ -2492,11 +2495,11 @@ on it.
 **Breaking:**
 - bpk-component-content-container@1.0.0
   - no longer applying styling to bare html in content container by default, instead consumers can opt in using
-  `bareHtml` prop
+    `bareHtml` prop
   - nested content containers have bottom margin
 - bpk-mixins@5.0.0
   - no longer applying styling to bare html in content container by default, instead consumers can opt in using
-  the `bpk-content-container--bare-html` mixin
+    the `bpk-content-container--bare-html` mixin
 - bpk-tokens@12.0.0
   - re-categorised some tokens for typesetting
 
